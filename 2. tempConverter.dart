@@ -8,73 +8,81 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+    runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: TemperatureConverter(),
-    );
-  }
+    @override
+    Widget build(BuildContext context) {
+        return MaterialApp(
+            home: TemperatureConverter(),
+        );
+    }
 }
 
 class TemperatureConverter extends StatefulWidget {
-  @override
-  _TemperatureConverterState createState() => _TemperatureConverterState();
+    @override
+    _TemperatureConverterState createState() => _TemperatureConverterState();
 }
 
 class _TemperatureConverterState extends State<TemperatureConverter> {
-  double _celsius = 0;
-  double _fahrenheit = 0;
+    double _celsius = 0;
+    double _fahrenheit = 0;
 
-  void _convertTemperature() {
-    setState(() {
-      _fahrenheit = (_celsius * 9/5) + 32;
-    });
-  }
+    void _convertTemperature() {
+        setState(() {
+            _fahrenheit = (_celsius * 9/5) + 32;
+        });
+    }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Конвертер температуры'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Введите температуру в градусах Цельсия:',
-              style: TextStyle(fontSize: 18),
+    @override
+    Widget build(BuildContext context) {
+        return Scaffold(
+            appBar: AppBar(
+                title: Text('Конвертер температуры'),
+                backgroundColor: Colors.orange[800],
+                centerTitle: true,
             ),
-            SizedBox(height: 10),
-            TextField(
-              keyboardType: TextInputType.number,
-              onChanged: (value) {
-                setState(() {
-                  _celsius = double.tryParse(value) ?? 0;
-                });
-              },
+            body: Center(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                        SizedBox(height: 100),
+                        Text(
+                            'Введите температуру в градусах Цельсия:',
+                            style: TextStyle(fontSize: 16),
+                        ),
+                        SizedBox(height: 20),
+                        TextField(
+                            keyboardType: TextInputType.number,
+                            textAlign: TextAlign.center,
+                            onChanged: (value) {
+                                setState(() {
+                                    _celsius = double.tryParse(value) ?? 0;
+                                });
+                            },
+                        ),
+                        SizedBox(height: 20),
+                        ElevatedButton(
+                            onPressed: _convertTemperature,
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.orange[800],
+                            ),
+                            child: Text('Конвертировать'),
+                        ),
+                        SizedBox(height: 60),
+                        Text(
+                            'Фаренгейта:',
+                            style: TextStyle(fontSize: 18),
+                        ),
+                        SizedBox(height: 20),
+                        Text(
+                            '$_fahrenheit °F',
+                            style: TextStyle(fontSize: 34, fontWeight: FontWeight.bold),
+                        ),
+                    ],
+                ),
             ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _convertTemperature,
-              child: Text('Конвертировать в Фаренгейты'),
-            ),
-            SizedBox(height: 20),
-            Text(
-              'Температура в градусах Фаренгейта:',
-              style: TextStyle(fontSize: 18),
-            ),
-            Text(
-              '$_fahrenheit °F',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+        );
+    }
 }
