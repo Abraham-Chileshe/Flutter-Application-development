@@ -7,7 +7,6 @@
     flutter:
       sdk: flutter
     provider: ^6.0.2
-    url_launcher: 6.0.9
 */
 
 import 'package:flutter/material.dart';
@@ -19,6 +18,7 @@ void main() => runApp(MaterialApp(
 class MyApp extends StatelessWidget{
   @override
   Widget build(BuildContext context){
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Foxdale"),
@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget{
         centerTitle: true,
         elevation: 0.0,
       ),
+
       body: Center(
         child: Image.asset(
             "img/main.png",
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget{
 
         ),
       ),
+
       drawer: Drawer(
         child: ListView(
           children: <Widget>[
@@ -100,7 +102,7 @@ class MyApp extends StatelessWidget{
                 title: Text('Settings'),
                 leading: Icon(
                   Icons.settings,
-                  color: Colors.black,
+                  color: Colors.purple[800],
                 ),
               ),
 
@@ -110,29 +112,41 @@ class MyApp extends StatelessWidget{
 
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: 0,
-          fixedColor: Colors.green,
+          fixedColor: Colors.black,
+
           items: const [
             BottomNavigationBarItem(
               label: "Home",
               icon: Icon(
                   Icons.home,
+                  color: Colors.purple,
               ),
-
             ),
+
             BottomNavigationBarItem(
               label: "Search",
-              icon: Icon(Icons.search),
+              icon: Icon(
+                  Icons.search,
+                  color: Colors.black,
+              ),
             ),
             BottomNavigationBarItem(
               label: "Profile",
-              icon: Icon(Icons.account_circle),
+              icon: Icon(
+                  Icons.account_circle,
+                  color: Colors.black
+              ),
             ),
 
             BottomNavigationBarItem(
               label: "Profile",
-              icon: Icon(Icons.account_circle),
+              icon: Icon(
+                  Icons.settings,
+                  color: Colors.black
+              ),
             ),
           ],
+
           onTap: (int indexOfItem) {}),
 
     );
